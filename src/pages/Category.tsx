@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Clock, ChevronRight, Hash, Grid } from 'lucide-react';
-import { API_BASE_URL, MEDIA_BASE_URL } from '../api/config';
+import { API_BASE_URL, MEDIA_BASE_URL, getArrayPayload } from '../api/config';
 import AdSpace from '../components/AdSpace';
 
 
@@ -37,8 +37,8 @@ const Category = () => {
 
     Promise.all([fetchNews, fetchTags])
       .then(([newsRes, tagsRes]) => {
-        setNews(newsRes.data);
-        setTags(tagsRes.data);
+        setNews(getArrayPayload<NewsItem>(newsRes.data));
+        setTags(getArrayPayload<{name: string, slug: string}>(tagsRes.data));
         setLoading(false);
       })
       .catch(err => {

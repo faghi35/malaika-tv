@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PlayCircle, ChevronRight, Info, Filter } from 'lucide-react';
-import API_BASE_URL from '../api/config';
+import API_BASE_URL, { getArrayPayload } from '../api/config';
 
 interface Emission {
   id: number;
@@ -23,7 +23,7 @@ const Programs = () => {
     try {
       const response = await fetch(`${API_BASE_URL}/emissions.php`);
       const data = await response.json();
-      setEmissions(data);
+      setEmissions(getArrayPayload<Emission>(data));
       setLoading(false);
     } catch (error) {
       console.error('Error fetching emissions', error);

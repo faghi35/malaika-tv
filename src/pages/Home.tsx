@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { Clock, ChevronRight, PlayCircle, Radio, ArrowRight, Tv } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { API_BASE_URL, MEDIA_BASE_URL } from '../api/config';
+import { API_BASE_URL, MEDIA_BASE_URL, getArrayPayload } from '../api/config';
 import AdSpace from '../components/AdSpace';
 
 
@@ -36,7 +36,7 @@ const Home = () => {
 
   useEffect(() => {
     axios.get(`${API_BASE_URL}/news.php?limit=30`)
-      .then(res => { setNews(res.data); setLoading(false); })
+      .then(res => { setNews(getArrayPayload<NewsItem>(res.data)); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 

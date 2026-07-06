@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Clock, ChevronRight, Hash, Filter } from 'lucide-react';
-import { API_BASE_URL, MEDIA_BASE_URL } from '../api/config';
+import { API_BASE_URL, MEDIA_BASE_URL, getArrayPayload } from '../api/config';
 
 interface NewsItem {
   id: number;
@@ -24,7 +24,7 @@ const Tag = () => {
     setLoading(true);
     axios.get(`${API_BASE_URL}/news.php?tag=${tagSlug}&limit=28`)
       .then(res => {
-        setNews(res.data);
+        setNews(getArrayPayload<NewsItem>(res.data));
         setLoading(false);
       })
       .catch(err => {

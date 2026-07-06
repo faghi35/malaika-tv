@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Youtube, Send, Radio, Mail, Smartphone, ShieldCheck, MapPin, Phone } from 'lucide-react';
+import { ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Youtube, Send, Mail, Smartphone, ShieldCheck, MapPin, Phone } from 'lucide-react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../api/config';
+import { API_BASE_URL, getArrayPayload } from '../../api/config';
 
 interface CategoryItem {
   id: number;
@@ -24,7 +24,7 @@ const Footer = () => {
   useEffect(() => {
     axios.get(`${API_BASE_URL}/categories.php`)
       .then(res => {
-        setCategories(res.data.filter((c: any) => c.name !== 'Accueil').slice(0, 8));
+        setCategories(getArrayPayload<CategoryItem>(res.data).filter((c) => c.name !== 'Accueil').slice(0, 8));
       })
       .catch(err => {
         console.error('Error fetching categories in footer:', err);
