@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Share2, ChevronRight, Music, Radio as RadioIcon, Clock, Volume2, Info } from 'lucide-react';
+import { API_BASE_URL } from '../api/config';
 
 interface Program {
   id: number;
@@ -19,7 +20,7 @@ const DirectRadio = () => {
 
   const fetchPrograms = async () => {
     try {
-      const response = await fetch('/api/programs.php?type=RADIO');
+      const response = await fetch(`${API_BASE_URL}/programs.php?type=RADIO`);
       const data = await response.json();
       setSchedule(data);
     } catch (error) {

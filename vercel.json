@@ -1,7 +1,19 @@
 {
   "version": 2,
+  "buildCommand": "npm install --ignore-scripts && chmod -R +x node_modules/.bin && npm run build",
+  "installCommand": "echo 'skip'",
   "cleanUrls": true,
   "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",
