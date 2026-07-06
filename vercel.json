@@ -1,40 +1,8 @@
 {
-  "version": 2,
-  "buildCommand": "npm ci --include=dev && chmod -R +x node_modules/.bin && npm run build",
-  "installCommand": "echo 'skip'",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET,POST,PUT,DELETE,OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
-        }
-      ]
-    }
-  ],
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "https://malaika-tv.forka.org/api/:path*"
-    },
-    {
-      "source": "/((?!api).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "env": {
-    "NPM_FLAGS": "--include=dev",
-    "UV_LINK_MODE": "copy"
-  }
+  ]
 }
