@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Menu, PlayCircle, Radio, ChevronDown, ChevronRight, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../api/config';
+import { API_BASE_URL, getArrayPayload } from '../../api/config';
 
 interface CategoryItem {
   id: number;
@@ -32,7 +32,7 @@ const Header = () => {
     axios.get(`${API_BASE_URL}/categories.php`)
       .then(res => {
         // Filter out 'Accueil' if present since Logo directs to Home
-        const list = res.data.filter((c: any) => c.name !== 'Accueil');
+        const list = getArrayPayload<CategoryItem>(res.data).filter((c) => c.name !== 'Accueil');
         setCategories(list);
       })
       .catch(err => {

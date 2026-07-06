@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { ArrowLeft, Clock, Share2, Facebook, Twitter, MessageCircle, ChevronRight } from 'lucide-react';
-import { API_BASE_URL, MEDIA_BASE_URL } from '../api/config';
+import { API_BASE_URL, MEDIA_BASE_URL, getArrayPayload, getObjectPayload } from '../api/config';
 import AdSpace from '../components/AdSpace';
 
 interface NewsItem {
@@ -34,7 +34,7 @@ const NewsDetail = () => {
     try {
       const response = await fetch(`${API_BASE_URL}/news_detail.php?slug=${slug}`);
       const data = await response.json();
-      setArticle(data);
+      setArticle(getObjectPayload<NewsItem>(data));
       setLoading(false);
     } catch (error) {
       console.error("Error fetching article:", error);
@@ -45,7 +45,7 @@ const NewsDetail = () => {
   const fetchLatest = async () => {
      try {
         const response = await axios.get(`${API_BASE_URL}/news.php?limit=5`);
-        setLatestNews(response.data);
+        setLatestNews(getArrayPayload<NewsItem>(response.data));
      } catch (err) {
         console.error("Error fetching latest news:", err);
      }
