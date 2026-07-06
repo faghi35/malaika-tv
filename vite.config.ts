@@ -12,7 +12,7 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'http://localhost/malaika-tv-api/api',
+        target: 'https://malaika-tv.forka.org/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
