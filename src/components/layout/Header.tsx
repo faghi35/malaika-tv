@@ -1,5 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, PlayCircle, Radio, ChevronDown, ChevronRight, X, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Menu, PlayCircle, Radio, ChevronDown, ChevronRight, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../api/config';
@@ -21,8 +21,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [tickerIndex, setTickerIndex] = useState(0);
   const [categories, setCategories] = useState<CategoryItem[]>([]);
-  const location = useLocation();
-
   useEffect(() => {
     const interval = setInterval(() => {
       setTickerIndex(prev => (prev + 1) % breakingNews.length);

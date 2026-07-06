@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Calendar, ArrowLeft, Clock, Share2, Facebook, Twitter, MessageCircle, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Clock, Share2, Facebook, Twitter, MessageCircle, ChevronRight } from 'lucide-react';
 import { API_BASE_URL, MEDIA_BASE_URL } from '../api/config';
 import AdSpace from '../components/AdSpace';
 

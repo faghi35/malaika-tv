@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Share2, Clock, Tv, Calendar, Play, Monitor, Layers } from 'lucide-react';
+import { Share2, Clock, Tv, Calendar, Monitor, Layers } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 
 interface Program {
