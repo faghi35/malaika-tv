@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm install --ignore-scripts && chmod -R +x node_modules/.bin && npm run build",
+  "buildCommand": "npm ci --include=dev && chmod -R +x node_modules/.bin && npm run build",
   "installCommand": "echo 'skip'",
   "cleanUrls": true,
   "trailingSlash": false,
@@ -8,9 +8,18 @@
     {
       "source": "/api/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,POST,PUT,DELETE,OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
       ]
     }
   ],
@@ -23,5 +32,9 @@
       "source": "/((?!api).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "env": {
+    "NPM_FLAGS": "--include=dev",
+    "UV_LINK_MODE": "copy"
+  }
 }
