@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Share2, Clock, Tv, Calendar, Monitor, Layers } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
+import { API_BASE_URL, getArrayPayload } from '../api/config';
 
 interface Program {
   id: number;
@@ -21,9 +22,9 @@ const DirectTV = () => {
 
   const fetchPrograms = async () => {
     try {
-      const response = await fetch('/api/programs.php?type=TV');
+      const response = await fetch(`${API_BASE_URL}/programs.php?type=TV`);
       const data = await response.json();
-      setSchedule(data);
+      setSchedule(getArrayPayload<Program>(data));
     } catch (error) {
       console.error("Error fetching TV programs:", error);
     }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Play, X, Calendar, Tag, ChevronRight, Video as VideoIcon } from 'lucide-react';
 import VideoPlayer from '../components/player/VideoPlayer';
-import { getArrayPayload } from '../api/config';
+import { API_BASE_URL, getArrayPayload } from '../api/config';
 
 interface Video {
   id: number;
@@ -20,7 +20,7 @@ const Videos = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   useEffect(() => {
-    axios.get('/api/videos.php')
+    axios.get(`${API_BASE_URL}/videos.php`)
       .then(res => {
         setVideos(getArrayPayload<Video>(res.data));
         setLoading(false);

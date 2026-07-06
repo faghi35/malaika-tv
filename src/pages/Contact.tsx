@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Send, MapPin, Phone, Mail, MessageSquare, CheckCircle2, AlertCircle } from 'lucide-react';
+import { API_BASE_URL } from '../api/config';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus('loading');
     
-    axios.post('/api/contact.php', formData)
+    axios.post(`${API_BASE_URL}/contact.php`, formData)
       .then(() => {
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
